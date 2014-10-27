@@ -11,7 +11,7 @@ angular.module('smusaAssetsApp')
       $location.path('/request');
     };
 
-    $scope.retrieveDetails = function(){
-      console.log('details');
+    $scope.retrieveDetails = function(id){
+      $location.path('/request/' + $scope.confirmCode);
     };
   });
