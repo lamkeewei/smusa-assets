@@ -1,0 +1,39 @@
+<div id="view-request-container">
+  <div class="card">
+    <h3>Loan Request - {{request.event}}</h3>      
+
+    <hr>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <strong class="sub-header">Loan Details</strong>
+      </div>
+
+      <div class="col-md-12">        
+        <div class="date-block">
+          <strong>Status</strong>
+          <span ng-show="!request.status">Pending</span>
+        </div>
+
+        <div class="date-block">
+          <strong>Start Date</strong>{{request.startDate | date: 'dd/MM/yy'}}
+        </div>
+
+        <div class="date-block">
+          <strong>End Date</strong>{{request.startDate | date: 'dd/MM/yy'}}
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <strong class="sub-header">Loaned Items</strong>
+      </div>
+      <div class="col-md-2 item-loaned" ng-repeat="item in request.items">
+        <h3>{{item.qtyRequested}}</h3>
+        <p>{{item.itemId.name}}</p>
+      </div>
+    </div>
+    
+  </div>
+</div>

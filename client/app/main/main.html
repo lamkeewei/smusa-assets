@@ -1,0 +1,20 @@
+<h3 id="logo">SMUSA</h3>
+
+<div id="main-container" class="container-fluid">
+  <div class="content">
+    <h1>Assets Loan</h1>
+
+    <button ng-click="newRequest()">Make New Request</button>
+    <button ng-hide="makeRequest" ng-click="toggleCode()">Check Request Status</button>
+    <div class="input-field" ng-show="makeRequest">
+      <form name="form" ng-submit="retrieveDetails()">
+        <input type="text" id="confirmCode" ng-model="confirmCode" placeholder="Confirmation Code" autofocus/>
+      </form>
+    </div>
+    <p ng-show="makeRequest">
+      <a ng-click="retrieveDetails()" href=""><span class="glyphicon glyphicon-ok"></span> Submit</a>
+      <span class="divider">|</span>
+      <a href="" ng-click="makeRequest = false"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+    </p>
+  </div>
+</div>

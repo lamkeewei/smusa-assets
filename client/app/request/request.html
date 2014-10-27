@@ -1,0 +1,105 @@
+<div id="form-wrapper"> 
+  <form name="form" ng-submit="submitRequest(form)" novalidate> 
+    <h3 id="logo">SMUSA</h3>
+
+    <div class="container" id="form-container">
+      <div class="row">    
+        <div class="col-md-12">
+          <h2>Loan Request</h2>
+          <hr>
+          <div class="col-md-6">
+            <strong class="sub-header">Contact Details</strong>
+            <div class="form-group"
+              ng-class="{'has-error': submitted && form.name.$error.required}">
+              <label class="control-label">Name</label>
+              <input type="text" name="name" ng-model="request.name" class="form-control" required autofocus/>
+            </div>
+
+            <div class="form-group"
+              ng-class="{'has-error': submitted && form.contact.$error.required}">
+              <label class="control-label">Contact Number</label>
+              <input type="text" name="contact" ng-model="request.contact" class="form-control" required/>
+            </div>
+
+            <div class="form-group"
+              ng-class="{'has-error': submitted && form.email.$error.required}">
+              <label class="control-label">Email</label>
+              <input type="email" name="email" ng-model="request.email" class="form-control" required/>
+            </div>
+
+            <div class="form-group"
+              ng-class="{'has-error': submitted && form.club.$error.required}">
+              <label class="control-label">Club / Organization</label>
+              <input type="text" name="club" ng-model="request.club" class="form-control" required/>
+            </div>
+          </div>
+          <div class="col-md-6">            
+            <strong class="sub-header">Event Details</strong>
+            <div class="form-group"
+              ng-class="{'has-error': submitted && form.event.$error.required}">
+              <label class="control-label">Event</label>
+              <input type="text" name="event" ng-model="request.event" class="form-control" required/>
+            </div>
+            
+            <strong class="sub-header">Loan Details</strong>
+            <div class="form-group"
+              ng-class="{'has-error': submitted && form.startDate.$error.required}">
+              <label class="control-label">Start Date</label>
+              <select name="startDate" ng-model="request.startDate" class="form-control" 
+                ng-options="date | date: 'dd/MM/yy' for date in startDates"
+                required>
+                <option></option>
+              </select>
+            </div>
+
+            <div class="form-group"
+              ng-class="{'has-error': submitted && form.endDate.$error.required}">
+              <label class="control-label">End Date</label>
+              <select name="endDate" ng-model="request.endDate" class="form-control" 
+                ng-options="date | date: 'dd/MM/yy' for date in endDates"
+                required>
+                <option></option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Storage Details</label>
+              <textarea name="details" ng-model="request.details" class="form-control"></textarea>
+            </div>        
+          </div>
+        </div>
+      </div>
+      
+      <hr>
+
+      <div class="row">
+        <div class="col-md-12">        
+          <strong class="sub-header">Loan Quantity</strong>
+        </div>
+        <div class="col-md-3" ng-repeat="item in items">
+          <div class="form-group">
+            <label class="control-label item-label">
+              {{item.name}} <small>(Max {{item.qtyAvailable}})</small>
+            </label>
+            <input type="number" max="{{item.qtyAvailable}}" ng-model="item.qtyRequested" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- <div class="row">
+        <div class="col-md-12">
+          <strong class="sub-header">Terms and Conditions</strong>
+        </div>
+      </div> -->
+
+
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button class="btn btn-primary btn-block">Submit Request</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
