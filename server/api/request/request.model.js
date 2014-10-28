@@ -12,7 +12,7 @@ var RequestSchema = new Schema({
   startDate: Date,
   endDate: Date,
   details: String,
-  pending: { type: String, default: 'pending' },
+  status: { type: String, default: 'pending' },
   items: [{
     itemId: { type: Schema.Types.ObjectId, ref: 'Item' },
     qtyRequested: Number

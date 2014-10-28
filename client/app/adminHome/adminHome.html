@@ -1,0 +1,122 @@
+<div class="container-fluid" id="admin-home-container">
+  <div class="navbar">
+    <ul>
+      <li class="header">
+        <a href="">SMUSA Assets</a>
+      </li>
+
+      <li>
+        <a href="">
+          <i class="fa fa-dashboard"></i> Dashboard
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <i class="fa fa-clock-o"></i> Archive
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <i class="fa fa-cubes"></i>Loanable Items
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <i class="fa fa-users"></i> Accounts
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div>      
+      <h3>Dashboard</h3>
+      <hr>      
+    </div>
+    
+    <form class="form-inline" role="form">    
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" ng-model="search.$" id="search-control">
+          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        </div>
+      </div>
+      
+      <!-- <span class="divider">|</span>
+
+      <div class="form-group">
+        <div class="input-group">
+          <select class="form-control" id="date-control"
+            ng-options="date | date: 'dd/MM/yy' for date in dates">
+          </select>
+        </div>
+      </div> -->
+    </form>
+
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="xs"></th>
+          <th>Event</th>
+          <th class="md">Name</th>
+          <th class="sm">Status</th>
+          <th class="sm">Contact</th>
+          <th class="sm">Start</th>
+          <th class="sm">End</th>
+          <th class="sm">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="request in active | filter: search | orderBy: startDate">
+          <td>
+            <input type="checkbox" ng-model="request.selected" />
+          </td>
+          <td class="event-details">
+            <p>              
+              {{request.event}}
+            </p>
+            <p>              
+              <small>By: {{request.club}}</small>
+            </p>
+            <ul>
+              <li ng-repeat="item in request.items" class="item">
+                {{item.qtyRequested}} x {{item.itemId.name}} 
+              </li>
+            </ul>
+          </td>
+          <td>
+            {{request.name}}
+          </td>
+          <td>
+            <span class="label label-default">{{request.status | uppercase}}</span>
+          </td>
+          <td>
+            {{request.contact}}
+          </td>
+          <td>
+            {{request.startDate | date: 'dd/MM/yy'}}
+          </td>
+          <td>
+            {{request.endDate | date: 'dd/MM/yy'}}
+          </td>
+          <td>
+            <button class="btn btn-block btn-xs btn-success" 
+              ng-disabled="request.status === 'approved'"
+              ng-click="update(request, 'approved')">
+              Approve
+            </button>
+            <button class="btn btn-block btn-xs btn-danger"
+              ng-disabled="request.status === 'rejected'"
+              ng-click="update(request, 'rejected')">
+              Reject
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

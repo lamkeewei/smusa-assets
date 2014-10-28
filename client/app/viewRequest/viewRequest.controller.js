@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('smusaAssetsApp')
-  .controller('ViewrequestCtrl', function ($scope, request, $window, $location, $timeout) {
-    $scope.request = request;
+  .controller('ViewrequestCtrl', function ($scope, $window, $location, $timeout, Request, $stateParams) {
+    
     $scope.flags = {};
 
-    if (!request.name) {
+
+    Request.get({ id: $stateParams.id }, function(request){
+      $scope.request = request;      
+    }, function(){
       $window.swal({
         title: 'Invalid Code',
         text: 'We cannot find a matching request!',
@@ -15,5 +18,6 @@ angular.module('smusaAssetsApp')
           $location.path('/');
         });
       });
-    }
+    });
+
   });
